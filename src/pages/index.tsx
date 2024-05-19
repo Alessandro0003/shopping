@@ -3,7 +3,7 @@ import Stripe from "stripe";
 
 import { useKeenSlider } from 'keen-slider/react'
 import { HomeContainer, Product } from "../styles/pages/home";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import { stripe } from "../lib/stripe";
 
 import 'keen-slider/keen-slider.min.css'
@@ -33,7 +33,7 @@ export default function Home({ products }: HomeProps) {
             <Image src={product.imageUrl} width={520} height={480} alt="" />
             <footer>
               <strong>{product.name}</strong>
-              <span>R$ {product.price}</span>
+              <span>{product.price}</span>
             </footer>
           </Product>
         )
@@ -48,8 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
     expand: ['data.default_price']
   })
 
-
-
   const products = response.data.map(product => {
     const price = product.default_price as Stripe.Price
 
@@ -59,7 +57,10 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: unitAmount / 100,
+      price: new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(unitAmount / 100),
     }
   })
 
@@ -68,6 +69,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       products
-    }
+    },
+    revalidate: 60 * 60 * 2, // 2 hours
   }
 }
