@@ -17,12 +17,13 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
     // console.log(product)
+    
+    // const { isFallback } = useRouter()
 
-    const { isFallback } = useRouter()
-
-    if (isFallback) {
-        return <p>Loading...</p>
-    }
+    // if (isFallback) {
+    //     implementation future 
+    //     return <p>skeleton screen</p>
+    // }
 
     return (
        <ProductContainer>
@@ -52,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
             { params: {id: 'prod_Q7RM3i9xl9duAa' } },
             { params: {id: 'prod_Q7RNoMGWLPDJQO' } },
         ],
-        fallback: true, 
+        fallback: 'blocking',
     }
 }
 
@@ -87,4 +88,4 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
       },
       revalidate: 60 * 60 * 1 // 1 hours
     }
-  }
+}
