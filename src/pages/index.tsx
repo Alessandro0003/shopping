@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from 'next/head'
 import Stripe from "stripe";
 import Link from 'next/link'
 
@@ -27,6 +28,13 @@ export default function Home({ products }: HomeProps) {
   }) 
 
   return (
+    <>
+      <Head>
+        <title>Home | Shop</title>
+
+      </Head>
+
+
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map(product => {
         return(
@@ -43,6 +51,7 @@ export default function Home({ products }: HomeProps) {
         ) 
       })}
     </HomeContainer>
+    </>
   );
 }
 

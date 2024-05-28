@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import Stripe from 'stripe'
+import Head from 'next/head'
 
 interface ProductProps {
     product: {
@@ -50,6 +51,10 @@ export default function Product({ product }: ProductProps) {
     }
 
     return (
+      <>
+        <Head>
+          <title>{product.name} | Shop</title>
+        </Head>
        <ProductContainer>
         <ImageContainer>
             <Image src={product.imageUrl} width={520} height={480} alt="" />
@@ -65,6 +70,7 @@ export default function Product({ product }: ProductProps) {
             </button>
         </ProductDetails>
        </ProductContainer>
+       </>
     )
 }
 
