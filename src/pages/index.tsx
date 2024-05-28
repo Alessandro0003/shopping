@@ -8,6 +8,8 @@ import { HomeContainer, Product } from "../styles/pages/home";
 import { GetStaticProps } from "next";
 import { stripe } from "../lib/stripe";
 
+import iconArrow from '../assets/arrow.svg'
+
 import 'keen-slider/keen-slider.min.css'
 
 interface HomeProps {
@@ -36,9 +38,13 @@ export default function Home({ products }: HomeProps) {
 
 
     <HomeContainer ref={sliderRef} className="keen-slider">
+      <div>
+         <Image src={iconArrow} alt=""/>
+      </div>
       {products.map(product => {
         return(
           <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
+              
             <Product className="keen-slider__slide">
               <Image src={product.imageUrl} width={520} height={480} alt="" />
               <footer>
