@@ -61,3 +61,31 @@ export const Product = styled('div', {
     },
   },
 })
+
+export const ArrowNextContainer = styled('div', {
+  position: 'fixed',
+  top: '50%',
+  right: '20px',
+  transform: 'translateY(-50%)',
+  zIndex: 10,
+
+  button: {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+  },
+})
+
+export const ArrowBackContainer = styled('div', {
+  position: 'fixed',
+  top: '50%',
+  left: '20px',
+  transform: 'translateY(-50%)',
+  zIndex: 10,
+
+  button: {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+  },
+})
