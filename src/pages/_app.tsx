@@ -1,9 +1,9 @@
-import type { AppProps } from "next/app";
-import { globalStyles } from "../styles/global";
+import type { AppProps } from 'next/app'
+import { globalStyles } from '../styles/global'
 
 import logoImg from '../assets/logo.svg'
 import logoCart from '../assets/cart.svg'
-import { Container, Header } from "../styles/pages/app";
+import { Container, Header } from '../styles/pages/app'
 
 import Image from 'next/image'
 
@@ -17,12 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <Header>
         <Image src={logoImg} alt="" />
         <div>
-           <Image src={logoCart} alt="" width={30} height={30} />
+          <Image src={logoCart} alt="" width={30} height={30} />
         </div>
       </Header>
-      <Component {...pageProps} /> 
+      <Component {...pageProps} />
     </Container>
-
   )
 }
-  
